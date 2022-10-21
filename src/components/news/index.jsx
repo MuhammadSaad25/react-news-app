@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import './index.css';
+import "./index.css";
 
 import axios from "axios";
 import moment from "moment";
@@ -88,7 +88,8 @@ function News() {
         {isLoading ? "loading..." : ""}
 
         {data.map((eachPost) => (
-          <div className="post" key={eachPost?.name}>
+          <div className="post">
+           
             <a
               className="title"
               href={eachPost?.url}
