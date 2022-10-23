@@ -5,7 +5,7 @@ import "./index.css";
 
 function News() {
 
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
 
   const getNews = (e) => {
@@ -23,11 +23,18 @@ function News() {
       }
     };
 
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data.value);
+
+        setData(response.data.value);
+
+
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   }
 
   return (
@@ -43,6 +50,13 @@ function News() {
           }} />
 
         <button type="submit">Get News</button>
+
+        <div>{data.map(eachPost => (<div>
+          <h1>{eachPost.name}</h1>
+          <h3>{eachPost.description}</h3>
+        
+        </div>))}
+        </div>
 
       </form>
 
