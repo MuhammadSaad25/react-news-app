@@ -5,17 +5,20 @@ import "./index.css";
 
 function News() {
 
-  const [data, setdata] = useEffect([]);
-  const [query, setQuery] = useEffect("");
+  const [data, setdata] = useState([]);
+  const [query, setQuery] = useState("");
 
-  const getNews = () => {
+  const getNews = (e) => {
+    e.preventDefault();
+
+
     const options = {
       method: 'GET',
       url: 'https://bing-news-search1.p.rapidapi.com/news/search',
       params: { q: query, freshness: 'Day', textFormat: 'Raw', safeSearch: 'Off' },
       headers: {
         'X-BingApis-SDK': 'true',
-        'X-RapidAPI-Key': '57e8aabeaemshba9b8e780e0be61p10232cjsnc3c62901dcd7',
+        'X-RapidAPI-Key': '7d22d9a396msh925a60d8fa0cfbfp1e1d6ajsn178f1b726d4d',
         'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
       }
     };
