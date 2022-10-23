@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./index.css";
-
+import moment from "moment/moment";
 
 function News() {
 
@@ -9,7 +9,7 @@ function News() {
   const [query, setQuery] = useState("");
 
   const getNews = (e) => {
-    e.preventDefault();
+    e?.preventDefault();
 
 
     const options = {
@@ -26,9 +26,9 @@ function News() {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data.value);
+        console?.log(response?.data?.value);
 
-        setData(response.data.value);
+        setData(response?.data?.value);
 
 
       })
@@ -38,7 +38,7 @@ function News() {
   }
 
   return (
-    <div className="main" >
+    <div className="main">
 
       <form onSubmit={getNews}>
 
@@ -46,16 +46,21 @@ function News() {
           type="text"
           placeholder="Enter your city name"
           onChange={(e) => {
-            setQuery(e.target.value)
+            setQuery(e?.target?.value)
           }} />
 
         <button type="submit">Get News</button>
 
-        <div>{data.map(eachPost => (<div>
-          <h1>{eachPost.name}</h1>
-          <h3>{eachPost.description}</h3>
-        
-        </div>))}
+        <div>{data.map(eachPost => (
+          <div key={eachPost?.name}>
+            <div>{moment(eachPost?.datePublished)?.format('DD MMMM  h:mm a')}</div>
+            <h1>{eachPost?.name}</h1>
+            <p>{eachPost?.description}</p>
+            <img src={eachPost?.image?.thumbnail?.contentUrl?.replace("&pid=News","")?.replace("pid=News&","")?.replace("pid=News","")} alt="" />
+            <a href={eachPost?.url}>Read More</a>
+
+          </div>
+        ))}
         </div>
 
       </form>
