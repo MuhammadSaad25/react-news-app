@@ -237,9 +237,7 @@
     input{
       height: 60%;
     }
-  .container{
-    justify-content: flex-start;
-  }
+
     .red{
       height: 60%;
       width: 35%;
