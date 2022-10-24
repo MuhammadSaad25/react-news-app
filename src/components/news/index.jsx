@@ -74,35 +74,40 @@ function News() {
     <div className="main">
 
       <form onSubmit={getNews}>
+        <div className="form-div div1">News App</div>
+        <div className="form-div div2">
+          <input
+            type="text"
+            placeholder="Enter your Topic"
+            onChange={(e) => {
+              setQuery(e?.target?.value)
+            }} />
 
-        <input
-          type="text"
-          placeholder="Enter your city name"
-          onChange={(e) => {
-            setQuery(e?.target?.value)
-          }} />
-
-        <button type="submit">Get News</button>
-
-        <div>
-          {(isloading) ? "loading ..." : ""}
+          <button className="red" type="submit">Get News</button>
         </div>
-
-        <div>{data.map(eachPost => (
-          <div key={eachPost?.name}>
-            <div>{moment(eachPost?.datePublished)?.format('DD MMMM  h:mm a')}</div>
-            <h1>{eachPost?.name}</h1>
-            <p>{eachPost?.description}</p>
-            <img src={eachPost?.image?.thumbnail?.contentUrl?.replace("&pid=News", "")?.replace("pid=News&", "")?.replace("pid=News", "")} alt="" />
-            <br />
-            <a href={eachPost?.url} target="_blank" rel="noreferrer">Read More</a>
-
-          </div>
-        ))}
-        </div>
-
+        <div className="form-div div3"></div>
       </form>
 
+      <div className="loading">
+        {(isloading) ? "loading ..." : ""}
+      </div>
+
+      <div className="container">{data.map(eachPost => (
+        
+          <div className="sub-container" key={eachPost?.name}>
+            <div className="img-div">
+              <img src={eachPost?.image?.thumbnail?.contentUrl?.replace("&pid=News", "")?.replace("pid=News&", "")?.replace("pid=News", "")} alt="" />
+            </div>
+            <div className="data-div">
+              <div>{moment(eachPost?.datePublished)?.format('DD MMMM  h:mm a')}</div>
+              <h3>{eachPost?.name}</h3>
+              <p>{eachPost?.description}</p>
+              <a className="red1" href={eachPost?.url} target="_blank" rel="noreferrer">Read More</a>
+            </div>
+          </div>
+        
+              ))}
+      </div>
     </div>
   );
 }
